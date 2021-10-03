@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(version: 2021_10_03_114602) do
 
   create_table "sessions", force: :cascade do |t|
     t.integer "user_id"
+    t.datetime "expiry_at"
+    t.boolean "active", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_sessions_on_user_id"
@@ -50,6 +52,8 @@ ActiveRecord::Schema.define(version: 2021_10_03_114602) do
     t.string "name"
     t.string "cpf"
     t.integer "role"
+    t.string "email"
+    t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

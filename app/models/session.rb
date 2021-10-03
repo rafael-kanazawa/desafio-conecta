@@ -2,7 +2,7 @@ class Session < ApplicationRecord
   belongs_to :user
 
   def close
-   self.update(active: false, exit_at: DateTime.now)
+   self.update(active: false)
   end
 
   def expired?
