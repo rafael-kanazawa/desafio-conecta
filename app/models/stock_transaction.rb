@@ -2,7 +2,15 @@ class StockTransaction < ApplicationRecord
   belongs_to :stock
   enum action: {exit: 0, entry: 1}
 
+  validates :action, 
+    presence: :true, 
+    format: { with: /\A[a-zA-Z]+\z/, message: "only allows letters" },
+    inclusion: { in: %w(exit entry), message: "%{value} is not a valid action" }
   
+  validates :quantity,
+    numericality: { only_integer: true, greater_than: 0 },
+    presence: true
+
   validate :exit_from_empty_stock, :exit_quantity_greater_than_stock_quantity
 
   def exit_from_empty_stock
