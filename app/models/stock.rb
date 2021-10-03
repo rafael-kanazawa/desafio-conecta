@@ -6,11 +6,12 @@ class Stock < ApplicationRecord
     transaction_params = {
       quantity: params[:quantity],
       stock_id: self.id,
-      user_id: author.id
+      user_id: author.id,
+      action: params[:action]
     }
 
     @transaction = StockTransaction.new(transaction_params)
-    @transaction.save
+
   end
 
 
