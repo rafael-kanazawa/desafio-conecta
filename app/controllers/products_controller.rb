@@ -15,12 +15,11 @@ class ProductsController < ApplicationController
 
   # POST /products
   def create
-    @product = Product.new(product_params)
-
-    if @product.save
-      render json: @product, status: :created, location: @product
+    @respose = Product.register(initial_product_params)
+    if @respose.erros.any?
+      render json: @respose.errors, status: :unprocessable_entity  
     else
-      render json: @product.errors, status: :unprocessable_entity
+      render json: @respose, status: :created, location: @respose
     end
   end
 
@@ -39,12 +38,14 @@ class ProductsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_product
       @product = Product.find(params[:id])
     end
 
-    # Only allow a trusted parameter "white list" through.
+    def initial_product_params
+      params.require(:product).permit(:name, :description, :price, :stock_id, :quantity)
+    end
+
     def product_params
       params.require(:product).permit(:name, :description, :price, :stock_id)
     end

@@ -1,4 +1,4 @@
 class Stock < ApplicationRecord
-  has_one :product
+  belongs :product
   has_many :stock_transactions
 end

@@ -13,17 +13,6 @@ class StocksController < ApplicationController
     render json: @stock
   end
 
-  # POST /stocks
-  def create
-    @stock = Stock.new(stock_params)
-
-    if @stock.save
-      render json: @stock, status: :created, location: @stock
-    else
-      render json: @stock.errors, status: :unprocessable_entity
-    end
-  end
-
   # PATCH/PUT /stocks/1
   def update
     if @stock.update(stock_params)
