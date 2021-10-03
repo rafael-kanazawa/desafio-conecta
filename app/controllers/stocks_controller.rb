@@ -1,22 +1,7 @@
 class StocksController < ApplicationController
   before_action :authenticate_request!
-  
 
-  # GET /stocks
-  def index
-    @stocks = Stock.all
-
-    render json: @stocks
-  end
-
-  # GET /stocks/1
-  def show
-    @stock = Stock.find(params[:id])
-
-    render json: @stock
-  end
-
-  #PUT/PATCH /product/1/stock
+  #PUT/PATCH /products/1/stocks
   def update
     @stock = Product.find(params[:id]).stock
     if @stock.create_stock_transaction(stock_params, @current_user)
