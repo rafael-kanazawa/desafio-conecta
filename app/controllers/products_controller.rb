@@ -16,7 +16,7 @@ class ProductsController < ApplicationController
   # POST /products
   def create
     @respose = Product.register(product_registry_params)
-    if @respose.erros.any?
+    if @respose.errors.any?
       render json: @respose.errors, status: :unprocessable_entity  
     else
       render json: @respose, status: :created, location: @respose

@@ -1,5 +1,5 @@
 class Stock < ApplicationRecord
-  belongs :product
+  belongs_to :product
   has_many :stock_transactions
 
   def create_stock_transaction(params, author)
@@ -26,7 +26,5 @@ class Stock < ApplicationRecord
   def empty?
     self.quantity == 0
   end
-
-  def 
 
 end
