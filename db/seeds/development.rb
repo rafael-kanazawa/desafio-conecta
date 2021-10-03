@@ -1,0 +1,1 @@
+User.create(name: 'Admin', cpf:'11111111111', role: :admin)
