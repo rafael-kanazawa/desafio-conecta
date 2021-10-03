@@ -3,11 +3,10 @@ class StockTransaction < ApplicationRecord
   enum action: {exit: 0, entry: 1}
 
   validates :action, 
-    presence: :true, 
-    format: { with: /\A[a-zA-Z]+\z/, message: "only allows letters" },
-    inclusion: { in: %w(exit entry), message: "%{value} is not a valid action" }
+    presence: :true,
+    inclusion: { in: ['exit', 'entry'], message: "%{value} is fucking bumb" }
   
-  validates :quantity,
+  validates :quantity, :user_id, :stock_id,
     numericality: { only_integer: true, greater_than: 0 },
     presence: true
 
