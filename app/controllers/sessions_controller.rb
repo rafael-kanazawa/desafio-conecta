@@ -1,8 +1,9 @@
 class SessionsController < ApplicationController
   before_action :authenticate_request!, only: :logout
+  
 
   def login
-    user = User.find_by(email_address: params[:user][:email_address])
+    user = User.find_by(email: params[:user][:email])
     user = user&.authenticate(params[:user][:password])
 
     if user
