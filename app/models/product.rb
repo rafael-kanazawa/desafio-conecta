@@ -1,5 +1,5 @@
 class Product < ApplicationRecord
-  has_one :stock
+  has_one :stock, dependent: :destroy
 
   def self.register params
     quantity = params[:quantity]

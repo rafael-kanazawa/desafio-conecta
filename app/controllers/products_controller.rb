@@ -15,7 +15,7 @@ class ProductsController < ApplicationController
 
   # POST /products
   def create
-    @respose = Product.register(initial_product_params)
+    @respose = Product.register(product_registry_params)
     if @respose.erros.any?
       render json: @respose.errors, status: :unprocessable_entity  
     else
@@ -42,7 +42,7 @@ class ProductsController < ApplicationController
       @product = Product.find(params[:id])
     end
 
-    def initial_product_params
+    def product_registry_params
       params.require(:product).permit(:name, :description, :price, :stock_id, :quantity)
     end
 

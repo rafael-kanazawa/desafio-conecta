@@ -1,5 +1,6 @@
 class StocksController < ApplicationController
-  before_action :set_stock, only: [:show, :update, :destroy]
+  before_action :authenticate_request!
+  
 
   # GET /stocks
   def index
@@ -10,21 +11,23 @@ class StocksController < ApplicationController
 
   # GET /stocks/1
   def show
+    @stock = Stock.find(params[:id])
+
     render json: @stock
   end
 
-  # PATCH/PUT /stocks/1
+  #PUT/PATCH /product/1/stock
   def update
-    if @stock.update(stock_params)
-      render json: @stock
+    @stock = Product.find(params[:id]).stock
+    if @stock.create_stock_transaction(stock_params, @current_user)
+      if @stock.update_quantity(stock_params)
+        render json: @stock
+      else
+        render json: @stock.erros, status: :unprocessable_entity
+      end
     else
-      render json: @stock.errors, status: :unprocessable_entity
+      render json: @transaction.erros, status: :unprocessable_entity
     end
-  end
-
-  # DELETE /stocks/1
-  def destroy
-    @stock.destroy
   end
 
   private
@@ -35,6 +38,6 @@ class StocksController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def stock_params
-      params.require(:stock).permit(:quantity)
+      params.require(:stock).permit(:quantity, :action)
     end
 end

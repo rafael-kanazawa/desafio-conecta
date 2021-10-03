@@ -4,6 +4,7 @@ class CreateStockTransactions < ActiveRecord::Migration[5.2]
       t.references :stock, foreign_key: true
       t.integer :quantity
       t.integer :action
+      t.references :user, foreing_key: true
 
       t.timestamps
     end
