@@ -1,5 +1,6 @@
 class StocksController < ApplicationController
   before_action :authenticate_request!
+  load_and_authorize_resource
 
   #PUT/PATCH /products/1/stocks/1
   def update

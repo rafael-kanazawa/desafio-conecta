@@ -1,6 +1,7 @@
 class StockTransactionsController < ApplicationController
   before_action :authenticate_request!
   before_action :set_stock_transaction, only: [:show, :destroy]
+  load_and_authorize_resource
 
   # GET /stock_transactions
   def index

@@ -7,6 +7,7 @@ class Ability
     elsif user.employee?
       can :read, Product
       can :manage, Stock
+      can [:rean, :update], User, user = user
     end
   end
 end

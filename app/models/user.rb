@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   has_secure_password
-  USER_ROLES = {employee: 0, admin: 1} 
-  enum role: USER_ROLES
+  has_many :sessions, dependent: :destroy
+  enum role: {employee: 0, admin: 1}
 
   validates :name,
     format: { with: /\A[a-zA-Z]+\z/, message: "only allows letters" },
@@ -19,13 +19,12 @@ class User < ApplicationRecord
     end
   end
 
-  def role=(value)
-    value = value.to_s
-    unless USER_ROLES.include?(value.to_sym)
-      @not_valid_role = true
-    else
-      value
-    end
+  def admin?
+    self.role == "admin"
+  end
+
+  def employee
+    self.role == "employee"
   end
  
 end

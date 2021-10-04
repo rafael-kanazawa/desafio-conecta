@@ -17,7 +17,7 @@ class StockTransaction < ApplicationRecord
     unless ACTION_TYPES.include?(value.to_sym)
       @invalid_action_type = true
     else
-      value
+      super value
     end
   end
 
