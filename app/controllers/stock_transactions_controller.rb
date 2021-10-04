@@ -4,7 +4,7 @@ class StockTransactionsController < ApplicationController
 
   # GET /stock_transactions
   def index
-    @stock_transactions = StockTransaction.all
+    @stock_transactions = StockTransaction.aggregate_by_stock
 
     render json: @stock_transactions
   end
