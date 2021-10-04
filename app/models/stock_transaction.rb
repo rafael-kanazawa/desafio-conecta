@@ -21,6 +21,19 @@ class StockTransaction < ApplicationRecord
     end
   end
 
+  def self.aggregate_by_stock
+    stocks = Stock.all
+    stocks.map do |stock|
+      {
+        stock: {
+          id: stock.id,
+          quantity: stock.quantity
+        },
+        transactions: stock.stock_transactions
+      }
+    end
+  end
+
   private 
 
   def invalid_action_type
