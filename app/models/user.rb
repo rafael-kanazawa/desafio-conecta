@@ -21,7 +21,7 @@ class User < ApplicationRecord
 
   def role=(value)
     value = value.to_s
-    unless USER_ROLES.includes?(value.to_sym)
+    unless USER_ROLES.include?(value.to_sym)
       @not_valid_role = true
     else
       value
