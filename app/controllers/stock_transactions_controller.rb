@@ -20,13 +20,8 @@ class StockTransactionsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
     def set_stock_transaction
       @stock_transaction = StockTransaction.find(params[:id])
-    end
-
-    # Only allow a trusted parameter "white list" through.
-    def stock_transaction_params
-      params.require(:stock_transaction).permit(:stock_id, :quantity, :action)
     end
 end

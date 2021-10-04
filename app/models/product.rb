@@ -1,6 +1,15 @@
 class Product < ApplicationRecord
   has_one :stock, dependent: :destroy
 
+  validates :name,
+    presence: true,
+    format: { with: /\A[a-zA-Z]+\z/, message: "only allows letters" }
+    
+  validates :price,
+    presence: true,
+    numericality: {greater_than: 0.0}
+
+
   def self.register params
     quantity = params[:quantity]
     params.delete :quantity

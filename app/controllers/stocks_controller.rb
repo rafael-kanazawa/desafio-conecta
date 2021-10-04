@@ -4,7 +4,8 @@ class StocksController < ApplicationController
   #PUT/PATCH /products/1/stocks/1
   def update
     @stock = Product.find(params[:product_id]).stock
-    @transaction = @stock.create_stock_transaction(stock_params, @current_user)
+    @transaction = @stock.create_stock_transaction(stock_params, @current_user) 
+
     if @transaction.save
       if @stock.update_quantity(stock_params)
         render json: @stock
