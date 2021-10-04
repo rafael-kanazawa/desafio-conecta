@@ -11,23 +11,31 @@ Things you may want to cover:
   - rails 5.2.6
 
 * Configuration
-  - 
+  - Command:
+    bundle install
 
 * Database creation
   - Command: 
     rails db:migrate
 
-* Database population
+* Database populate
   - Command:
     rails db:seed
 
 * Deployed Application instructions:
   - URL: https://desafio-conecta.herokuapp.com/
-  - 
+  - User crendencials:
+    - Admin
+      email: admin@email.com
+      password: 123456
+    
+    - Employee
+      email: employee@email.com
+      password: 123456
 
 * API Routes:
-  Produtos 
 
+  Produtos 
   Rota: /products
   > GET: 
     - Descrição: Retorna lista de produtos
