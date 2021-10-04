@@ -7,7 +7,7 @@ class Product < ApplicationRecord
     
   validates :price,
     presence: true,
-    numericality: {greater_than: true}
+    numericality: {greater_than: 0.0}
 
 
   def self.register params
